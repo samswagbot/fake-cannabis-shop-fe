@@ -1,0 +1,93 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+  justify-content: center;
+}
+.strain {
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  text-align: left;
+  
+  color: black;
+  min-width: 400px; 
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  text-decoration: none;
+}
+.strain:hover {
+  background-color: #00a400;
+}
+.name {
+  margin: 0px;
+}
+.type {
+  font-weight: bold;
+  margin: 6px 0;
+  font-size: 14px;
+}
+.description {
+  font-size: 14px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  margin: 8px 0;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+.img {
+  width: 30%;
+  border-radius: 4px;
+  margin-right: 8px;
+}
+
+.logoCtn {
+  display: flex;
+  justify-content: center;
+  
+}
+.cannabisLogo {
+  width: 100px;
+  margin-right: 5px;
+}
+
+.name {
+  color: #8c198c;
+}
+
+.thcLevels {
+  font-weight: bold;
+}
+
+.layout {
+  padding: 20px;
+}
+
+.search {
+  padding-bottom: 40px;
+  width: 50%;
+  margin: 0 auto;
+}
+
+@media (min-width: 900px) and (max-width: 1200px){
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .cannabisLogo {
+      width: 60px;
+     
+    }
+}
+
+@media (max-width: 900px)  {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+    .cannabisLogo {
+      width: 80px;
+     
+    }
+}
