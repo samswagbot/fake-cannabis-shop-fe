@@ -26,3 +26,8 @@ export interface Effects {
   stress: string;
   uplifted: string;
 }
+
+export interface Query {
+  name?: string;
+  type?: string;
+}

@@ -10,7 +10,7 @@
   padding: 10px;
   display: flex;
   text-align: left;
-  
+  min-height: 160px;
   color: black;
   min-width: 400px; 
   align-items: center;
@@ -66,9 +66,16 @@
 }
 
 .search {
-  padding-bottom: 40px;
   width: 50%;
-  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.filter {
+  padding-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (min-width: 900px) and (max-width: 1200px){

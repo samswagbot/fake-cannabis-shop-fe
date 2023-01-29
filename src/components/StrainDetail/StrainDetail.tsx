@@ -1,5 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { Effects, StrainType } from "../../types/strain";
+import Spinner from "../Spinner/Spinner";
 import styles from "./strainDetail.module.css";
 
 const StrainDetail = () => {
@@ -7,9 +8,9 @@ const StrainDetail = () => {
 
   const EffectBars = ({ effects }: { effects: Effects }) => (
     <div className={styles.effectsContainer}>
-      {Object.entries(effects).map((effect) => {
+      {Object.entries(effects).map((effect, index) => {
         return (
-          <div>
+          <div key={index}>
             {effect[0]} : {effect[1]}
             <div className={styles.progress}>
               <div
@@ -47,11 +48,7 @@ const StrainDetail = () => {
       </div>
     );
   };
-  return state.strain ? (
-    <StrainContent strain={state.strain} />
-  ) : (
-    <div>loading</div>
-  );
+  return state.strain ? <StrainContent strain={state.strain} /> : <Spinner />;
 };
 
 export default StrainDetail;
