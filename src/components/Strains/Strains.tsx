@@ -13,21 +13,18 @@ const Strains = () => {
     name: "",
     type: "",
   });
-  const [pageNumber, setPageNumber] = useState(1);
-  console.log(pageNumber)
-  const { loading, strains, hasMore, error } = useStrainSearch(
-    query,
-    pageNumber
-  );
+  const [range, setRange] = useState(0);
+
+  const { loading, strains, hasMore, error } = useStrainSearch(query, range);
 
   const observer = useRef<any>();
-  const lastStrainElement = useCallback( 
+  const lastStrainElement = useCallback(
     (node: any) => {
       if (loading) return;
       if (observer.current) observer.current.disconnect();
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
-          setPageNumber((prev) => prev + 1);
+          setRange((prev) => prev + 50);
         }
       });
       if (node) observer.current.observe(node);
