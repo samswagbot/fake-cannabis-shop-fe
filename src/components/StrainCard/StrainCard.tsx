@@ -1,4 +1,3 @@
-import { type } from "@testing-library/user-event/dist/type";
 import { Link } from "react-router-dom";
 import { ReactComponent as CannabisLogo } from "../../assets/cannabis-leaf.svg";
 import { StrainType } from "../../types/strain";
