@@ -7,6 +7,12 @@ const useStrainSearch = (query: Query, range: number) => {
   const [error, setError] = useState(false);
   const [strains, setStrains] = useState<StrainType[] | null>(null);
   const [hasMore, setHasMore] = useState(false);
+
+  useEffect(() => {
+      setStrains(null)
+  }, [query.name, query.type])
+
+
   useEffect(() => {
     let cancel: () => void;
     setLoading(true);

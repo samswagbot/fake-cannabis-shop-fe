@@ -1,11 +1,11 @@
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useEffect } from "react";
 import styles from "./strains.module.css";
 
 import { Autocomplete, TextField } from "@mui/material";
 import StrainCard from "../StrainCard/StrainCard";
 import Filter from "../Filter/Filter";
 import { useStrainSearch } from "../../hooks/useStrainSearch";
-import { Query } from "../../types/strain.d";
+import { Query, StrainType } from "../../types/strain.d";
 import Spinner from "../Spinner/Spinner";
 
 const Strains = () => {
@@ -51,11 +51,15 @@ const Strains = () => {
             if (strains.length === index + 1) {
               return (
                 <div ref={lastStrainElement} key={strain._id}>
-                  <StrainCard strain={strain}  />
+                  <StrainCard strain={strain} />
                 </div>
               );
             }
-            return <div key={strain._id}><StrainCard strain={strain}  /></div>;
+            return (
+              <div key={strain._id}>
+                <StrainCard strain={strain} />
+              </div>
+            );
           })}
         </div>
       );
@@ -65,25 +69,25 @@ const Strains = () => {
 
   return (
     <div className={styles.layout}>
+      <div className={styles.filter}>
+        <Autocomplete
+          id="search-cannabis"
+          clearOnBlur={false}
+          className={styles.search}
+          options={(strains && strains.map(({ name }) => name)) || []}
+          onChange={handleSearch}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Search strains"
+              onChange={handleSearch}
+            />
+          )}
+        />
+        <Filter onChange={handleTypes} />
+      </div>
       {strains && (
         <>
-          <div className={styles.filter}>
-            <Autocomplete
-              id="search-cannabis"
-              clearOnBlur={false}
-              className={styles.search}
-              options={strains.map(({ name }) => name)}
-              onChange={handleSearch}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="Search strains"
-                  onChange={handleSearch}
-                />
-              )}
-            />
-            <Filter onChange={handleTypes} />
-          </div>
           <CheckForStrains />
         </>
       )}

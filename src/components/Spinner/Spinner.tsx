@@ -1,7 +1,8 @@
 import { CircularProgress } from "@mui/material";
+import styles from './spinner.module.css'
 
 const Spinner = () => (
-  <div>
+  <div className={styles.spinner}>
     <CircularProgress />
   </div>
 );
