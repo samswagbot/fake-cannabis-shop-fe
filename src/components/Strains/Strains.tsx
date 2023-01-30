@@ -21,12 +21,15 @@ const Strains = () => {
   const lastStrainElement = useCallback(
     (node: any) => {
       if (loading) return;
+      // disconnects previous element
       if (observer.current) observer.current.disconnect();
+      // creates new observer
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting && hasMore) {
           setRange((prev) => prev + 50);
         }
       });
+      // set the new observer
       if (node) observer.current.observe(node);
     },
     [loading, hasMore]
@@ -44,7 +47,7 @@ const Strains = () => {
   };
 
   const CheckForStrains = () => {
-    if (strains?.length) {
+    if (strains) {
       return (
         <div className={styles.grid}>
           {strains.map((strain, index) => {
@@ -86,13 +89,9 @@ const Strains = () => {
         />
         <Filter onChange={handleTypes} />
       </div>
-      {strains && (
-        <>
-          <CheckForStrains />
-        </>
-      )}
+      {strains && <CheckForStrains />}
       {loading && <Spinner />}
-      {error && "Error"}
+      {error && "Can not load strains"}
     </div>
   );
 };

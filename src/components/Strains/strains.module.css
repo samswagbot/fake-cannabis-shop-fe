@@ -16,9 +16,11 @@
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   text-decoration: none;
+  transition: transform .25s;
 }
 .strain:hover {
   background-color: #00a400;
+  transform: scale(1.05);
 }
 .name {
   margin: 0px;

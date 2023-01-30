@@ -13,15 +13,13 @@ const useStrainSearch = (query: Query, range: number) => {
   }, [query.name, query.type])
 
 
-  useEffect(() => {
-    let cancel: () => void;
+  useEffect(() => { 
     setLoading(true);
     setError(false);
     axios({
       method: "GET",
       url: "/api/strains",
       params: { name: query.name, type: query.type, range: range },
-      cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
       .then((res) => {
         setLoading(false);
@@ -31,8 +29,7 @@ const useStrainSearch = (query: Query, range: number) => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
         setError(true);
-      });
-    return () => cancel();
+      }); 
   }, [query, range]);
   return {
     loading,
