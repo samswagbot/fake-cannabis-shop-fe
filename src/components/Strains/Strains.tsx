@@ -1,11 +1,11 @@
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback } from "react";
 import styles from "./strains.module.css";
 
 import { Autocomplete, TextField } from "@mui/material";
 import StrainCard from "../StrainCard/StrainCard";
 import Filter from "../Filter/Filter";
 import { useStrainSearch } from "../../hooks/useStrainSearch";
-import { Query, StrainType } from "../../types/strain.d";
+import { Query } from "../../types/strain.d";
 import Spinner from "../Spinner/Spinner";
 
 const Strains = () => {
