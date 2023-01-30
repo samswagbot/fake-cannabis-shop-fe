@@ -37,7 +37,7 @@ const StrainDetail = () => {
       effects,
     } = strain;
     return (
-      <>
+      <div>
         <nav className={styles.breadcrumbs}>
           <Breadcrumbs aria-label="breadcrumb">
             <Link underline="hover" color="inherit" href="/">
@@ -76,7 +76,7 @@ const StrainDetail = () => {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   };
   return state.strain ? <StrainContent strain={state.strain} /> : <Spinner />;
