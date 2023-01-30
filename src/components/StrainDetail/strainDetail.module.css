@@ -1,43 +1,101 @@
-.strain {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+.strainContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;  
+  width: 80%;
 }
 
 .img {
-    width: 50%;
+  width: 50%;
 }
 
 .content {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .effectsContainer {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  margin-top: 20px;
+  text-transform: capitalize;
 }
 
 .progress {
-    margin-top: 5px;
-    padding: 2px;
-    border: 3px solid #05e35e;
-    height: 30px;
+  margin-top: 5px;
+  padding: 2px;
+  border: 3px solid #05e35e;
+  height: 30px;
+}
+
+.logoCtn {
+  display: flex;
+  justify-content: center;
+}
+.cannabisLogo {
+  width: 300px;
+  margin-right: 40px;
+}
+
+.img {
+  width: 450px;
+  margin-right: 40px;
+}
+
+.progressBar {
+  height: 100%;
+  background-color: #05e35e;
+  animation: fill-bar 3s;
+}
+
+@keyframes fill-bar {
+  from {
+    width: 0%;
   }
-  
-  .progressBar {
+  to {
+    width: 100%;
+  }
+}
+
+.layout {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+}
+
+.breadcrumbs {
+  margin: 20px 0 0 40px;
+}
+
+@media (max-width: 1000px) {
+  .strainContainer {
+    display: block;
+    text-align: justify;
+
+    width: auto;
+  }
+
+  .img,
+  .cannabisLogo {
+    width: 350px;
+    margin-right: 0;
+  }
+  .cannabisLogo {
+    width: 200px;
+  }
+
+  .effectsContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .imgContainer {
+    display: flex;
+    justify-content: center;
+  }
+  .layout {
+    margin: 0 20px 20px 20px;
     height: 100%;
-    background-color: #05e35e;
-    animation: fill-bar 3s;
   }
-  
-  @keyframes fill-bar {
-    from {width: 0%;}
-    to {width: 100%;}
-  }
+}

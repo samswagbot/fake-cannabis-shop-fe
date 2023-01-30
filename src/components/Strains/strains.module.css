@@ -12,7 +12,7 @@
   text-align: left;
   min-height: 160px;
   color: black;
-  min-width: 400px; 
+  min-width: 400px;
   align-items: center;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   text-decoration: none;
@@ -46,7 +46,6 @@
 .logoCtn {
   display: flex;
   justify-content: center;
-  
 }
 .cannabisLogo {
   width: 100px;
@@ -62,7 +61,7 @@
 }
 
 .layout {
-  padding: 20px;
+  padding: 40px;
 }
 
 .search {
@@ -78,23 +77,32 @@
   align-items: center;
 }
 
-@media (min-width: 900px) and (max-width: 1200px){
-    .grid {
-      grid-template-columns: 1fr 1fr;
-    }
+@media (min-width: 900px) and (max-width: 1300px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-    .cannabisLogo {
-      width: 60px;
-     
-    }
+  .cannabisLogo {
+    width: 60px;
+  }
+  .search {
+    width: 60%;
+  }
 }
 
-@media (max-width: 900px)  {
-    .grid {
-      grid-template-columns: 1fr;
-    }
-    .cannabisLogo {
-      width: 80px;
-     
-    }
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .cannabisLogo {
+    width: 80px;
+  }
+
+  .layout {
+    padding: 20px;
+  }
+
+  .search {
+    width: 80%;
+  }
 }

@@ -19,6 +19,7 @@ const StrainCard = ({ strain }: { strain: StrainType }) => {
           <CannabisLogo className={styles.cannabisLogo} />
         </div>
       )}
+      
       <div className={styles.content}>
         <h4 className={styles.name}>{name}</h4>
         <div className={styles.type}>{type}</div>

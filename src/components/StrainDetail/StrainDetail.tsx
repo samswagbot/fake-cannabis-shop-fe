@@ -2,6 +2,8 @@ import { useLocation } from "react-router-dom";
 import { Effects, StrainType } from "../../types/strain";
 import Spinner from "../Spinner/Spinner";
 import styles from "./strainDetail.module.css";
+import { ReactComponent as CannabisLogo } from "../../assets/cannabis-leaf.svg";
+import { Breadcrumbs, Typography, Link } from "@mui/material";
 
 const StrainDetail = () => {
   const { state } = useLocation();
@@ -11,7 +13,7 @@ const StrainDetail = () => {
       {Object.entries(effects).map((effect, index) => {
         return (
           <div key={index}>
-            {effect[0]} : {effect[1]}
+            {effect[0]}: {effect[1]}
             <div className={styles.progress}>
               <div
                 className={styles.progressBar}
@@ -35,17 +37,46 @@ const StrainDetail = () => {
       effects,
     } = strain;
     return (
-      <div className={styles.strain}>
-        <img className={styles.img} src={img_url} alt={strain.name} />
-        <div className={styles.content}>
-          <h1>{name}</h1>
-          <div>{type}</div>
-          <p>{description}</p>
-          <div>THC Levels: {thc_level}</div>
-          <div>Terpene: {most_common_terpene}</div>
-          <EffectBars effects={effects} />
+      <>
+        <nav className={styles.breadcrumbs}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link underline="hover" color="inherit" href="/">
+              Strains
+            </Link>
+            <Typography color="text.primary">{name}</Typography>
+          </Breadcrumbs>
+        </nav>
+        <div className={styles.layout}>
+          <div className={styles.strainContainer}>
+            {img_url ? (
+              <div className={styles.imgContainer}>
+                <img src={img_url} className={styles.img} alt={name} />
+              </div>
+            ) : (
+              <div className={styles.logoCtn}>
+                <CannabisLogo className={styles.cannabisLogo} />
+              </div>
+            )}
+            <div className={styles.content}>
+              <h1>{name}</h1>
+              <div>
+                <strong>Type: </strong>
+                {type}
+              </div>
+              <p>{description}</p>
+              <div>
+                <strong>THC Levels: </strong>
+                {thc_level}
+              </div>
+              <div>
+                <strong>Terpene: </strong>
+                {most_common_terpene}
+              </div>
+              <EffectBars effects={effects} />
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   };
   return state.strain ? <StrainContent strain={state.strain} /> : <Spinner />;
