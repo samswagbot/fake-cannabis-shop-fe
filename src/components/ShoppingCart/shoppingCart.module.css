@@ -8,3 +8,10 @@
 h1 {
     margin: 0;
 }
+
+.total {
+    text-align: end;
+    font-weight: bolder;
+    font-size: medium;
+    padding-right: 20px;
+}

@@ -1,4 +1,4 @@
-import { Delete } from "@mui/icons-material";
+import { Close, Delete } from "@mui/icons-material";
 import { IconButton, Stack } from "@mui/material";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { useStrainsContext } from "../../context/StrainsContext";
@@ -15,23 +15,25 @@ const CartItem = ({ id, quantity }: { id: string; quantity: number }) => {
   return (
     <Stack direction="row" spacing={3}>
       <img className={styles.img} src={item?.img_url} alt="cannabis-img" />
-      <div className={styles.name}>
-        <span>
-          {item.name}
-          <span>{quantity > 1 && `x ${quantity}`}</span>
-        </span>
-        <div>{formatCurrency(item?.price)}</div>
-      </div>
-      <div>
-        <span>{formatCurrency(item.price * quantity)}</span>
-        <IconButton
-          onClick={() => removeFromCart(item._id)}
-          color="error"
-          aria-label="delete"
-          size="medium"
-        >
-          <Delete fontSize="inherit" />
-        </IconButton>
+      <div className={styles.cartItem}>
+        <div>
+          <div className={styles.name}>
+            {item.name} {' '}
+            <span className={styles.price}>{quantity > 1 && `x${quantity}`}</span>
+          </div>
+
+          <div className={styles.price}>{formatCurrency(item?.price)}</div>
+        </div>
+        <div className={styles.subtotal}>
+          <span>{formatCurrency(item.price * quantity)}</span>
+          <IconButton
+            onClick={() => removeFromCart(item._id)}
+            aria-label="close"
+            size="small"
+          >
+            <Close fontSize="inherit" />
+          </IconButton>
+        </div>
       </div>
     </Stack>
   );

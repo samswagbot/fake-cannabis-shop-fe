@@ -1,8 +1,27 @@
-.name {
+.cartItem {
     display: flex;
-    flex-direction: column;
+    width: 100%;
+    justify-content: space-between;
+    
+    align-items: center;
 }
 
 .img {
     width: 20%;
+}
+
+.name {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.price {
+    font-size: small;
+    font-weight: 400;
+}
+
+.subtotal {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
 }

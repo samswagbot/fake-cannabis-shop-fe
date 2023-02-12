@@ -27,7 +27,7 @@ const ShoppingCart = () => {
             return <CartItem {...item} key={item.id} />;
           })}
           <Divider />
-          <div>
+          <div className={styles.total}>
             Total:{" "}
             {formatCurrency(
               cartItems.reduce((total, currentCartItem) => {
