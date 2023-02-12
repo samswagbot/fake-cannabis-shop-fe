@@ -1,4 +1,3 @@
-import { StrainType } from "./../types/strain.d";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Query } from "../types/strain.d";

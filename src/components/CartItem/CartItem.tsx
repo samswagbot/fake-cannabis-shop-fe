@@ -1,4 +1,4 @@
-import { Close, Delete } from "@mui/icons-material";
+import { Close } from "@mui/icons-material";
 import { IconButton, Stack } from "@mui/material";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { useStrainsContext } from "../../context/StrainsContext";

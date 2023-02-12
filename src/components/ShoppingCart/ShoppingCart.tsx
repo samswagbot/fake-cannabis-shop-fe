@@ -1,9 +1,8 @@
 import { Close } from "@mui/icons-material";
-import { Divider, Drawer, IconButton, Paper, Stack } from "@mui/material";
+import { Divider, Drawer, IconButton, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { useStrainsContext } from "../../context/StrainsContext";
-import { StrainType } from "../../types/strain";
 import { formatCurrency } from "../../utils/formatCurrenecy";
 import CartItem from "../CartItem/CartItem";
 import styles from "./shoppingCart.module.css";

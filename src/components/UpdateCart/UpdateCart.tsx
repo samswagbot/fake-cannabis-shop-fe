@@ -1,7 +1,6 @@
 import { Add, Remove, Delete } from "@mui/icons-material";
 import { Button, IconButton } from "@mui/material";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
-import { useStrainsContext } from "../../context/StrainsContext";
 import styles from "./updateCart.module.css";
 
 const UpdateCart = ({ id }: { id: string }) => {
