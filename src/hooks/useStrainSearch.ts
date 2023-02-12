@@ -1,19 +1,20 @@
+import { StrainType } from "./../types/strain.d";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Query, StrainType } from "../types/strain.d";
+import { Query } from "../types/strain.d";
+import { useStrainsContext } from "../context/StrainsContext";
 
 const useStrainSearch = (query: Query, range: number) => {
+  const { strains, setStrains } = useStrainsContext();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [strains, setStrains] = useState<StrainType[] | null>(null);
   const [hasMore, setHasMore] = useState(false);
 
   useEffect(() => {
-      setStrains(null)
-  }, [query.name, query.type])
+    setStrains(null);
+  }, [query.name, query.type, setStrains]);
 
-
-  useEffect(() => { 
+  useEffect(() => {
     setLoading(true);
     setError(false);
     axios({
@@ -29,8 +30,8 @@ const useStrainSearch = (query: Query, range: number) => {
       .catch((e) => {
         if (axios.isCancel(e)) return;
         setError(true);
-      }); 
-  }, [query, range]);
+      });
+  }, [query, range, setStrains]);
   return {
     loading,
     error,

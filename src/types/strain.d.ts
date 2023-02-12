@@ -7,6 +7,7 @@ export interface StrainType {
   effects: Effects;
   most_common_terpene: string;
   thc_level: string;
+  price: number;
 }
 
 export interface Effects {

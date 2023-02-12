@@ -6,8 +6,8 @@
 }
 .strain {
   border-radius: 4px;
-  cursor: pointer;
-  padding: 10px;
+ 
+  padding: 20px;
   display: flex;
   text-align: left;
   min-height: 160px;
@@ -18,10 +18,7 @@
   text-decoration: none;
   transition: transform .25s;
 }
-.strain:hover {
-  background-color: #00a400;
-  transform: scale(1.05);
-}
+
 .name {
   margin: 0px;
 }
@@ -64,8 +61,6 @@
 
 .layout {
   padding: 40px;
-  
-  
 }
 
 .search {
@@ -80,6 +75,25 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+}
+
+.price {
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price a {
+  cursor: pointer;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 12px;
+  cursor: pointer;
 }
 
 @media (min-width: 900px) and (max-width: 1300px) {
