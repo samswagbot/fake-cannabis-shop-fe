@@ -27,7 +27,7 @@ const SignUp = () => {
 
   const handleOnSubmit = async () => {
     try {
-      const res = await axios.post("/api/users", signUp);
+      const res = await axios.post(`${process.env.REACT_APP_BASE_URL}api/users`, signUp);
       if (res.status === 201) {
         navigate("/login", {
           state: { firstName: signUp.firstName, lastName: signUp.lastName },

@@ -29,7 +29,7 @@ const Login = () => {
   const handleOnSubmit = async () => {
     try {
       const { data: res } = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/auth`,
+        `${process.env.REACT_APP_BASE_URL}api/auth`,
         login
       );
       localStorage.setItem("token", res.data);
