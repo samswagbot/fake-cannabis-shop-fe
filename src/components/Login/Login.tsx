@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <div className={styles.layout}>
-      {state.firstName && state.lastName && (
+      {state?.firstName && state?.lastName && (
         <Snackbar
           anchorOrigin={{ vertical: "top", horizontal: "center" }}
           autoHideDuration={3000}
