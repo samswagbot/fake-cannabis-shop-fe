@@ -11,7 +11,7 @@ import { StrainProvider } from "./context/StrainsContext";
 import Home from "./pages/Home";
 
 function App() {
-  const user = localStorage.getItem("token");
+  // const user = localStorage.getItem("token");
   return (
     <BrowserRouter>
       <ShoppingCartProvider>
@@ -19,7 +19,7 @@ function App() {
           <ShoppingCart />
           <NavBar />
           <Routes>
-            {user && <Route path="/" element={<Home />} />}
+            <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Navigate replace to="/login" />} />
