@@ -18,7 +18,10 @@ const Login = () => {
 
   const handleOnSubmit = async () => {
     try {
-      const res = await axios.post("/api/users", login);
+      const res = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/users`,
+        login
+      );
       console.log(res);
     } catch (error: any) {
       if (

@@ -18,7 +18,7 @@ const useStrainSearch = (query: Query, range: number) => {
     setError(false);
     axios({
       method: "GET",
-      url: "/api/strains",
+      url: `${process.env.REACT_APP_BASE_URL}/api/strains`,
       params: { name: query.name, type: query.type, range: range },
     })
       .then((res) => {
