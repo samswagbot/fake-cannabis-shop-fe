@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 
 import NavBar from "./components/NavBar/NavBar";
@@ -11,7 +11,7 @@ import { StrainProvider } from "./context/StrainsContext";
 import Home from "./pages/Home";
 
 function App() {
-  // const user = localStorage.getItem("token");
+  const user = localStorage.getItem("token");
   return (
     <BrowserRouter>
       <ShoppingCartProvider>
@@ -19,10 +19,10 @@ function App() {
           <ShoppingCart />
           <NavBar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            {user && <Route path="/" element={<Home />} />}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
+            <Route path="/" element={<Navigate replace to="/login" />} />
             <Route path="/strains/:id" element={<StrainDetail />} />
           </Routes>
         </StrainProvider>

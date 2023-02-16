@@ -3,11 +3,12 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 const NavBar = () => {
   const { cartQuantity, openCart } = useShoppingCart();
+  const user = localStorage.getItem("token");
 
   return (
     <nav className={styles.nav}>
       <h3>Sam's Cannabis Shop</h3>
-      {cartQuantity > 0 && (
+      {cartQuantity > 0 && user && (
         <button onClick={openCart} className={styles.cart}>
           <ShoppingCartOutlinedIcon />
           <span className={styles.quantity}>{cartQuantity}</span>

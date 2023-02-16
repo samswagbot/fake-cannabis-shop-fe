@@ -1,16 +1,26 @@
-import { FormControl, Button, TextField, FormLabel } from "@mui/material";
+import {
+  FormControl,
+  Button,
+  TextField,
+  FormLabel,
+  Snackbar,
+  Alert,
+} from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styles from "../SignUp/signup.module.css";
 
 const Login = () => {
+  const { state } = useLocation();
+
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
   const [error, setError] = useState(false);
-
+  const [notification, setNotification] = useState(true);
+  const navigate = useNavigate();
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setLogin({ ...login, [name]: value });
@@ -18,11 +28,12 @@ const Login = () => {
 
   const handleOnSubmit = async () => {
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/api/users`,
+      const { data: res } = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/api/auth`,
         login
       );
-      console.log(res);
+      localStorage.setItem("token", res.data);
+      navigate("/");
     } catch (error: any) {
       if (
         error.response &&
@@ -34,14 +45,31 @@ const Login = () => {
     }
   };
 
+  const handleOnClose = () => {
+    setNotification(false);
+  };
+
   return (
     <div className={styles.layout}>
+      {state && (
+        <Snackbar
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          autoHideDuration={3000}
+          open={notification}
+          onClose={handleOnClose}
+        >
+          <Alert severity="success" variant="filled" sx={{ width: "100%" }}>
+            {state.firstName} {state.lastName} was successfully created! Please
+            login with new user!
+          </Alert>
+        </Snackbar>
+      )}
       <div className={styles.container}>
         <div className={styles.welcomeBack}>
           <h1>New User?</h1>
           <Button
             size="large"
-            onClick={() => <Navigate to="/signup" />}
+            onClick={() => navigate("/signup")}
             variant="outlined"
             color="inherit"
           >

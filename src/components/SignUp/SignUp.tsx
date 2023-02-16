@@ -1,6 +1,13 @@
-import { FormControl, Button, TextField, FormLabel } from "@mui/material";
+import {
+  FormControl,
+  Button,
+  TextField,
+  FormLabel,
+  Alert,
+} from "@mui/material";
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./signup.module.css";
 
 const SignUp = () => {
@@ -10,8 +17,9 @@ const SignUp = () => {
     email: "",
     password: "",
   });
-  const [error, setError] = useState(false);
+  const [error, setError] = useState("");
 
+  const navigate = useNavigate();
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.target;
     setSignUp({ ...signUp, [name]: value });
@@ -20,7 +28,13 @@ const SignUp = () => {
   const handleOnSubmit = async () => {
     try {
       const res = await axios.post("/api/users", signUp);
-      console.log(res)
+      if (res.status === 201) {
+        navigate("/login", {
+          state: { firstName: signUp.firstName, lastName: signUp.lastName },
+        });
+      } else {
+        setError("Could not create user");
+      }
     } catch (error: any) {
       if (
         error.response &&
@@ -37,7 +51,13 @@ const SignUp = () => {
       <div className={styles.container}>
         <div className={styles.welcomeBack}>
           <h1>Welcome Back</h1>
-          <Button size="large" variant="outlined" color="inherit">
+
+          <Button
+            size="large"
+            variant="outlined"
+            onClick={() => navigate("/login")}
+            color="inherit"
+          >
             Login
           </Button>
         </div>
@@ -82,7 +102,11 @@ const SignUp = () => {
               margin="normal"
               onChange={handleOnChange}
             />
-            {error && <div>{error}</div>}
+            {error && (
+              <Alert severity="error">
+                <div>{error}</div>
+              </Alert>
+            )}
             <Button
               sx={{
                 marginTop: 2,
