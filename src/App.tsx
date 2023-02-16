@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Navigate replace to="/login" />} />
+            {/* <Route path="/" element={<Navigate replace to="/login" />} /> */}
             <Route path="/strains/:id" element={<StrainDetail />} />
           </Routes>
         </StrainProvider>
