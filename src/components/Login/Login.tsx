@@ -9,10 +9,12 @@ import {
 import axios from "axios";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useShoppingCart } from "../../context/ShoppingCartContext";
 import styles from "../SignUp/signup.module.css";
 
 const Login = () => {
   const { state } = useLocation();
+  const { setUserToken } = useShoppingCart();
 
   const [login, setLogin] = useState({
     email: "",
@@ -32,7 +34,8 @@ const Login = () => {
         `${process.env.REACT_APP_BASE_URL}/api/auth`,
         login
       );
-      localStorage.setItem("token", res.data);
+
+      setUserToken(res.data);
       navigate("/");
     } catch (error: any) {
       if (

@@ -18,9 +18,11 @@ interface ShoppingCartContextProps {
   decreaseQuantity: (id: string) => void;
   openCart: () => void;
   closeCart: () => void;
+  setUserToken: (data: string) => void;
   cartQuantity: number;
   cartItems: CartItem[];
   isOpen: boolean;
+  token: string | null;
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContextProps);
@@ -30,7 +32,11 @@ export function useShoppingCart() {
 }
 
 export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
-  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>('shopping-cart',[]);
+  const [cartItems, setCartItems] = useLocalStorage<CartItem[]>(
+    "shopping-cart",
+    []
+  );
+  const [token, setToken] = useLocalStorage<null | string>("token", null);
   const [isOpen, setIsOpen] = useState(false);
 
   const cartQuantity = cartItems.reduce(
@@ -40,6 +46,10 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
+
+  function setUserToken(data: string) {
+    setToken(data);
+  }
 
   function getItemQuantity(id: string) {
     return cartItems.find((item) => item.id === id)?.quantity || 0;
@@ -94,10 +104,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         openCart,
         closeCart,
         isOpen,
+        setUserToken,
+        token,
       }}
     >
       {children}
-      
     </ShoppingCartContext.Provider>
   );
 }
