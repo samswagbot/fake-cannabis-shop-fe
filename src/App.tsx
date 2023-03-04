@@ -9,9 +9,10 @@ import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import { StrainProvider } from "./context/StrainsContext";
 
 import Home from "./pages/Home";
+import { useToken } from "./zustand/store";
 
 function App() {
-  const user = localStorage.getItem("token");
+  const token = useToken();
   return (
     <BrowserRouter>
       <ShoppingCartProvider>
@@ -19,10 +20,13 @@ function App() {
           <ShoppingCart />
           <NavBar />
           <Routes>
-            {user && <Route path="/" element={<Home />} />}
+            {token ? (
+              <Route path="/" element={<Home />} />
+            ) : (
+              <Route path="/" element={<Navigate replace to="/login" />} />
+            )}
             <Route path="/signup" element={<SignUp />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/" element={<Navigate replace to="/login" />} />
             <Route path="/strains/:id" element={<StrainDetail />} />
           </Routes>
         </StrainProvider>

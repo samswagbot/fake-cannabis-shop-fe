@@ -3,14 +3,15 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { useShoppingCart } from "../../context/ShoppingCartContext";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useLogout, useToken } from "../../zustand/store";
 const NavBar = () => {
   const { cartQuantity, openCart } = useShoppingCart();
-   const { token } = useShoppingCart();
-  
+  const token = useToken();
+  const clearToken = useLogout();
   const navigate = useNavigate();
 
   const handleLogOut = () => {
-    localStorage.removeItem("token");
+    clearToken();
     navigate(0);
   };
 
